@@ -5,8 +5,7 @@ export default function NotFound() {
   return (
     <div className="flex items-center justify-center h-screen bg-background px-6">
       <div className="text-center space-y-6">
-        <h1 className="text-6xl font-bold text-foreground">404</h1>
-        <h2 className="text-xl text-muted-foreground">Oops! Page not found</h2>
+        <img className="h-[400px]" src="https://i.ibb.co/S1Ywk5G/error-page.png" alt="error image" />
         <p className="text-sm text-muted-foreground">
           The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
