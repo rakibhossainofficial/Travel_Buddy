@@ -30,7 +30,7 @@ export default function TouristStoriesSection() {
         Your ultimate travel companion — explore top destinations, culture, and
         experiences shared by our community.
       </p>
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {stories?.map((story) => (
           <Card key={story._id}>
             <CardHeader>

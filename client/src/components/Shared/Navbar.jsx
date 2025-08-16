@@ -1,5 +1,5 @@
 // components/Navbar.jsx
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/Shared/ThemeToggle";
@@ -29,11 +29,26 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex gap-6 text-sm font-medium">
-          <Link to="/">Home</Link>
-          <Link to="/community">Community</Link>
-          <Link to="/about">About Us</Link>
-          <Link to="/all-trips">Trips</Link>
+        <nav className="hidden md:flex gap-7 text-sm font-medium">
+          <NavLink to="/" className="relative group">
+            Home
+            <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 transition-all duration-500 group-hover:w-full rounded-full"></span>
+          </NavLink>
+
+          <NavLink to="/community" className="relative group">
+            Community
+            <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 transition-all duration-500 group-hover:w-full rounded-full"></span>
+          </NavLink>
+
+          <NavLink to="/about" className="relative group">
+            About Us
+            <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 transition-all duration-500 group-hover:w-full rounded-full"></span>
+          </NavLink>
+
+          <NavLink to="/all-trips" className="relative group">
+            Trips
+            <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 transition-all duration-500 group-hover:w-full rounded-full"></span>
+          </NavLink>
         </nav>
 
         {/* Right Controls */}
