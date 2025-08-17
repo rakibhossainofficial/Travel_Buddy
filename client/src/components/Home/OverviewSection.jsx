@@ -22,7 +22,7 @@ export function OverviewSection() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="hover:shadow-xl transition-shadow">
           <CardContent>
-            <CardTitle className="mb-2">📍Top Destinations</CardTitle>
+            <CardTitle className="mb-2">Top Destinations</CardTitle>
             <p>
               In-depth guides to stunning landmarks, vibrant cities, and hidden
               gems.
@@ -32,7 +32,7 @@ export function OverviewSection() {
 
         <Card className="hover:shadow-xl transition-shadow">
           <CardContent>
-            <CardTitle className="mb-2">👨‍👩‍👧‍👦 Local Culture & Cuisine</CardTitle>
+            <CardTitle className="mb-2"> Local Culture & Cuisine</CardTitle>
             <p>
               Explore Bangladesh's rich traditions, delicious food, and
               community insights.
@@ -42,7 +42,7 @@ export function OverviewSection() {
 
         <Card className="hover:shadow-xl transition-shadow">
           <CardContent>
-            <CardTitle className="mb-2">✈️ Smart Trip Planning</CardTitle>
+            <CardTitle className="mb-2"> Smart Trip Planning</CardTitle>
             <p>
               Get travel packages, user stories, and real-time updates to
               streamline your journey.

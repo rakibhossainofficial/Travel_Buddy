@@ -6,7 +6,7 @@ const foodItems = [
     name: "Shutki Bhuna",
     region: "Chittagong Hill Tracts",
     image:
-      "https://images.pexels.com/photos/17050273/pexels-photo-17050273.jpeg",
+      "https://thumbs.dreamstime.com/b/loitta-shutki-bhuna-loitka-sutki-korma-karahi-served-dish-isolated-background-top-view-bangladesh-food-288299454.jpg?w=768",
     description:
       "A spicy blend of dried fish, garlic, and native chilies—best served with plain rice.",
   },
@@ -14,7 +14,7 @@ const foodItems = [
     name: "Mezban Beef",
     region: "Chattogram",
     image:
-      "https://images.pexels.com/photos/16179341/pexels-photo-16179341.jpeg",
+      "https://thumbs.dreamstime.com/b/beef-mezbani-gosht-korma-karahi-served-dish-isolated-wooden-background-top-view-indian-spices-bangladeshi-pakistani-food-310154648.jpg?w=768",
     description:
       "A rich, festive beef dish traditionally served in community feasts and celebrations.",
   },
@@ -32,10 +32,7 @@ export default function TasteOfBangladeshSection() {
         Taste of Bangladesh
       </motion.h2>
 
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
+      <motion.div  nitial="hidden" whileInView="show" viewport={{ once: true }}
         variants={{
           hidden: { opacity: 0 },
           show: {
@@ -57,11 +54,11 @@ export default function TasteOfBangladeshSection() {
             transition={{ duration: 0.5 }}
           >
             <Card>
-              <CardContent className="p-4 space-y-3">
+              <CardContent className="">
                 <img
                   src={food.image}
                   alt={food.name}
-                  className="w-full h-56 object-cover rounded"
+                  className="w-full h-56 object-cover bg-center rounded mb-2"
                 />
                 <h3 className="text-xl font-semibold">{food.name}</h3>
                 <p className="text-muted-foreground text-sm">{food.region}</p>

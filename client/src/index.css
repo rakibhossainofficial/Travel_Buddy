@@ -2,6 +2,7 @@
 
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "daisyui";
 
 * {
   font-family: "Montserrat", sans-serif;

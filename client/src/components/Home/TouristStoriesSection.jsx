@@ -24,7 +24,7 @@ export default function TouristStoriesSection() {
   return (
     <section className="my-12 space-y-6 max-w-6xl mx-auto px-4">
       <h2 className="text-2xl md:text-3xl font-bold text-center text-primary">
-        🌏 Discover Bangladesh Like Never Before
+         Discover Bangladesh Like Never Before
       </h2>
       <p className="text-sm text-muted-foreground text-center max-w-2xl mx-auto">
         Your ultimate travel companion — explore top destinations, culture, and
