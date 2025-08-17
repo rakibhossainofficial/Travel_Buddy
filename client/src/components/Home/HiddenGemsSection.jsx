@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -7,6 +6,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 
 const hiddenSpots = [
@@ -25,8 +25,7 @@ const hiddenSpots = [
     coordinates: { lat: 25.0094, lng: 91.942 },
     nearbyAttractions: ["Jaflong", "Bisnakandi"],
     facilities: ["Parking", "Boat rental", "Local guides"],
-    map:"https://maps.app.goo.gl/D4RxmHQDHrwyUTPS8",
-
+    map: "https://maps.app.goo.gl/D4RxmHQDHrwyUTPS8",
   },
   {
     id: 2,
@@ -44,7 +43,7 @@ const hiddenSpots = [
     coordinates: { lat: 25.0305, lng: 91.3967 },
     nearbyAttractions: ["Tanguar Haor", "Jadukata River"],
     facilities: ["Parking", "Food stalls", "Rest areas"],
-    map:"https://maps.app.goo.gl/H3NT7hMwyg3XDoEFA",
+    map: "https://maps.app.goo.gl/H3NT7hMwyg3XDoEFA",
   },
   {
     id: 3,
@@ -66,12 +65,14 @@ const hiddenSpots = [
       "Saint Martin’s Island",
     ],
     facilities: ["Hotels", "Restaurants", "Transportation services"],
-    map:"https://maps.app.goo.gl/8Qug49hsUdkifugG7",
+    map: "https://maps.app.goo.gl/8Qug49hsUdkifugG7",
   },
 ];
 
 export default function HiddenGemsSection() {
   const [open, setOpen] = useState(false);
+  const [selectedSpot, setSelectedSpot] = useState(null);
+
   return (
     <section className="max-w-6xl mx-auto px-4 py-12 space-y-6">
       <motion.h2
@@ -98,9 +99,9 @@ export default function HiddenGemsSection() {
         }}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
       >
-        {hiddenSpots.map((spot, i) => (
+        {hiddenSpots.map((spot) => (
           <motion.div
-            key={i}
+            key={spot.id}
             variants={{
               hidden: { opacity: 0, y: 30 },
               show: { opacity: 1, y: 0 },
@@ -117,76 +118,96 @@ export default function HiddenGemsSection() {
               <h3 className="text-xl font-semibold">{spot.title}</h3>
               <p className="text-muted-foreground text-sm">{spot.location}</p>
               <p className="text-sm">{spot.description}</p>
-              <Button size="sm" variant="outline" onClick={() => setOpen(true)}>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => {
+                  setSelectedSpot(spot);
+                  setOpen(true);
+                }}
+              >
                 Explore More
               </Button>
             </div>
-
-            {/* Modal */}
-            <Dialog open={open} onOpenChange={setOpen}>
-              <DialogContent className="max-w-2xl">
-                <DialogHeader>
-                  <DialogTitle className="text-2xl font-bold">
-                    {spot.title}
-                  </DialogTitle>
-                </DialogHeader>
-
-                <div className="space-y-4">
-                  {/* Image */}
-                  <img
-                    src={spot.image}
-                    alt={spot.title}
-                    className="w-full h-60 object-cover rounded"
-                  />
-
-                  {/* Location */}
-                  <p className="text-muted-foreground text-sm text-right">
-                    {spot.location}
-                  </p>
-
-                  {/* Description */}
-                  <p>{spot.description}</p>
-
-                  {/* Details */}
-                  <div className="space-y-1 text-sm">
-                    <p>
-                      <strong>Best Time To Visit:</strong>{" "}
-                      {spot.bestTimeToVisit}
-                    </p>
-                    <p>
-                      <strong>Entry Fee:</strong> {spot.entryFee}
-                    </p>
-                    <p>
-                      <strong>Opening Hours:</strong> {spot.openingHours}
-                    </p>
-                    <p>
-                      <strong>Travel Tips:</strong> {spot.travelTips}
-                    </p>
-                  </div>
-
-                  {/* Facilities */}
-                  <div>
-                    <p className="font-semibold">Facilities:</p>
-                    <ul className="flex gap-6 mt-1 text-sm">
-                      {spot.facilities?.map((f, i) => (
-                        <li key={i} className="flex items-center gap-1">
-                          <span className="w-2 h-2 bg-black rounded-full"></span>{" "}
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  {/* Map link */}
-                  <p>
-                     <span className="font-bold">Map Location: </span>
-                     <a className="hover:underline" target="_blank" href={spot.map}>Click Here</a>
-                    </p>
-                </div>
-              </DialogContent>
-            </Dialog>
           </motion.div>
         ))}
       </motion.div>
+
+      {/* Single Modal outside the map */}
+      <Dialog
+        open={open}
+        onOpenChange={(o) => {
+          setOpen(o);
+          if (!o) setSelectedSpot(null);
+        }}
+      >
+        <DialogContent className="md:max-w-4xl mx-auto md:h-[95%] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">
+              {selectedSpot?.title}
+            </DialogTitle>
+            <DialogDescription>
+              Details about {selectedSpot?.title}
+            </DialogDescription>
+          </DialogHeader>
+
+          {selectedSpot && (
+            <div className="space-y-4">
+              <img
+                src={selectedSpot.image}
+                alt={selectedSpot.title}
+                className="w-full h-60 object-cover rounded"
+              />
+
+              <p className="text-muted-foreground text-sm text-right">
+                {selectedSpot.location}
+              </p>
+
+              <p>{selectedSpot.description}</p>
+
+              <div className="space-y-1 text-sm">
+                <p>
+                  <strong>Best Time To Visit:</strong>{" "}
+                  {selectedSpot.bestTimeToVisit}
+                </p>
+                <p>
+                  <strong>Entry Fee:</strong> {selectedSpot.entryFee}
+                </p>
+                <p>
+                  <strong>Opening Hours:</strong> {selectedSpot.openingHours}
+                </p>
+                <p>
+                  <strong>Travel Tips:</strong> {selectedSpot.travelTips}
+                </p>
+              </div>
+
+              <div>
+                <p className="font-semibold">Facilities:</p>
+                <ul className="flex gap-6 mt-1 text-sm">
+                  {selectedSpot.facilities?.map((f, i) => (
+                    <li key={i} className="flex items-center gap-1">
+                      <span className="w-2 h-2 bg-black rounded-full"></span>{" "}
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <p>
+                <span className="font-bold">Map Location: </span>
+                <a
+                  className="hover:underline text-blue-600"
+                  target="_blank"
+                  href={selectedSpot.map}
+                  rel="noreferrer"
+                >
+                  Click Here
+                </a>
+              </p>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
